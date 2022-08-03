@@ -66,16 +66,16 @@ class CustomDrawer extends StatelessWidget {
                     //   ),
                     //   icon: Icon(Icons.arrow_drop_down, color: Colors.black),
                     //   onChanged: (newValue) {
-                    //     // setState(() {
-                    //     //   categories = newValue!;
-                    //     // });
+                    //
+                    //        categories = newValue!;
                     //   },
                     //   items: <String>[
                     //     'All', 'Work', 'Personal', 'Wishlist', 'Birthday'
                     //   ].map<DropdownMenuItem<String>>((String value) {
                     //     return DropdownMenuItem<String>(
                     //         value: value,
-                    //         child: Text(value)
+                    //         child: Text(value),
+                    //       enabled: true,
                     //     );
                     //   }).toList(),
                     // )
