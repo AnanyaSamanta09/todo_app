@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/controllers/dateTime.dart';
 import 'package:todo_app/controllers/screen_controller.dart';
 import 'package:todo_app/providers/task_provider.dart';
 import 'package:todo_app/view/common/categoryBar.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context)=>HomePageController()),
         ChangeNotifierProvider(create: (context)=>TaskPageController()),
         ChangeNotifierProvider(create: (context)=>TasksProvider()),
+        ChangeNotifierProvider(create: (context)=>DatetimeController()),
       ],
       child: MaterialApp(
         home: HomePage(),

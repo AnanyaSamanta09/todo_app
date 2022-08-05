@@ -11,7 +11,7 @@ class TaskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tcontroller = Provider.of<TasksProvider>(context);
+    final taskController = Provider.of<TasksProvider>(context);
     return Scaffold(
       body:Column(
         children: [
