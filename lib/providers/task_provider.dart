@@ -12,9 +12,13 @@ class TasksProvider extends ChangeNotifier{
     taskList.removeAt(index);
     notifyListeners();
   }
-  void getTaskById(int id){
-
+  int getTaskIndexById(String id){
+    int index = taskList.indexWhere((element) => element.id==id);
+    return index;
   }
+
+
+
   void completeTask(int index){
      taskList[index].completeTask();
      notifyListeners();

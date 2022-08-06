@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/constants/colors.dart';
 import 'package:todo_app/constants/device_size.dart';
 
-class CustomDrawer extends StatelessWidget {
+class CustomDrawer extends StatefulWidget {
 
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
+
+class _CustomDrawerState extends State<CustomDrawer> {
   String categories = 'All';
+  bool isDisplayingCategory = false;
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +61,16 @@ class CustomDrawer extends StatelessWidget {
                       ],
                     ),
 
+                    IconButton(onPressed: () {
+                      setState((){
+                        isDisplayingCategory=!isDisplayingCategory;
+                      });
+                    }, icon: Icon(Icons.upload))
+
+
 
                     // DropdownButtonFormField <String>(
+                    //
                     //   value: categories,
                     //   style: TextStyle(color: Colors.black),
                     //   decoration: InputDecoration(
@@ -82,6 +96,10 @@ class CustomDrawer extends StatelessWidget {
 
                   ],
                 ),
+
+                isDisplayingCategory?
+                    Container(height: 30,color: Colors.red.shade100,)
+                    : SizedBox(),
 
                 SizedBox(
                   height: displayHeight(context) * 0.04,

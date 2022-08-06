@@ -24,14 +24,6 @@ class Displaytask extends StatelessWidget {
           children: [
             Row(
               children: [
-                // Radio(
-                //     value: !taskController.taskList[index].isComplete,
-                //     groupValue: taskController.taskList[index].isComplete,
-                //     onChanged: (bool? value) {
-                //       print(value);
-                //       taskController.completeTask(index);
-                //     }),
-
                 IconButton(onPressed: (){
 
                   taskController.completeTask(index);
@@ -136,7 +128,9 @@ class Displaytask extends StatelessWidget {
                       DtimeController.selectedDate.toString(),
                     ),
                   ],
-                )),);
+                )
+            ),
+        );
       },
       itemCount: taskController.taskList.length,
     );

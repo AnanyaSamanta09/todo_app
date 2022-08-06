@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/constants/categoryData.dart';
 import 'package:todo_app/constants/colors.dart';
 import 'package:todo_app/controllers/taskPage_controller.dart';
+import 'package:todo_app/view/common/searchBar.dart';
 
 import '../../constants/device_size.dart';
 
@@ -71,6 +72,10 @@ class CategoryBar extends StatelessWidget {
                       fontSize: 16
                   ),
                 ),
+                onTap: (){
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SearchBar(),));
+                },
               )
               ),
               PopupMenuItem(child: ListTile(
