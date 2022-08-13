@@ -11,47 +11,59 @@ class Displaytask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final taskController = Provider.of<TasksProvider>(context);
-    final DtimeController = Provider.of<DatetimeController> (context);
-    bool v = true;
+    
 
     cardBox(TasksModel task, int index) {
       return Container(
         height: displayHeight(context) * 0.1,
         width: displayWidth(context),
         color: Colors.blue.shade100.withOpacity(0.3),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(onPressed: (){
+                Row(
+                  children: [
+                    IconButton(onPressed: (){
 
-                  taskController.completeTask(index);
-                },
-                    icon: Icon(task.isComplete? Icons.check_box : Icons.check_box_outline_blank)
+                      taskController.completeTask(index);
+                    },
+                        icon: Icon(task.isComplete? Icons.check_box : Icons.check_box_outline_blank)
+                    ),
+
+                    Container(
+                        width: displayWidth(context) * 0.5,
+                        child: Text(
+                          task.taskName,
+                          style: TextStyle(
+                              fontSize: 17,
+                              decoration:
+                                  (taskController.taskList[index].isComplete)
+                                      ? TextDecoration.lineThrough
+                                      : TextDecoration.none),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        )),
+                  ],
                 ),
-
-                Container(
-                    width: displayWidth(context) * 0.5,
-                    child: Text(
-                      task.taskName,
-                      style: TextStyle(
-                          fontSize: 17,
-                          decoration:
-                              (taskController.taskList[index].isComplete)
-                                  ? TextDecoration.lineThrough
-                                  : TextDecoration.none),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    )),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Text(
+                  task.dueDate.toString().substring(0,10),
+              ),
             ),
           ],
         ),
       );
     }
 
-    return ListView.builder(
+    return (taskController.taskList.isEmpty)?
+        Image.asset('assets/todo_list.jpg')
+        :ListView.builder(
       itemBuilder: (context, index) {
         return Padding(
             padding: EdgeInsets.only(bottom: 4, left: 25, right: 25),
@@ -75,6 +87,7 @@ class Displaytask extends StatelessWidget {
                             initialDate: DateTime.now(),
                             firstDate: DateTime(2000),
                             lastDate: DateTime(3000),);
+                        taskController.changeDate(taskController.taskList[index].id,selectedDate!);
                       },
                       backgroundColor: Colors.teal,
                       foregroundColor: Colors.white,
@@ -105,7 +118,7 @@ class Displaytask extends StatelessWidget {
                                       child: Text('Cancel')),
                                   TextButton(
                                       onPressed: () {
-                                        taskController.removeTask(index);
+                                        taskController.removeTask(taskController.taskList[index].id);
                                         Navigator.pop(context);
                                       },
                                       child: Text('Delete'))
@@ -120,15 +133,7 @@ class Displaytask extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Column(
-                  children: [
-                    cardBox(taskController.taskList[index], index,),
-
-                    Text(
-                      DtimeController.selectedDate.toString(),
-                    ),
-                  ],
-                )
+                child: cardBox(taskController.taskList[index],index,)
             ),
         );
       },

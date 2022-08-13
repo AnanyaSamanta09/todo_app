@@ -24,7 +24,7 @@ class _SearchBarState extends State<SearchBar> {
     final taskController = Provider.of<TasksProvider>(context);
 
     cardBox(TasksModel task) {
-      int index = taskController.getTaskIndexById(task.id);
+      int indexInOriginalList = taskController.getTaskIndexById(task.id);
       return Container(
         height: displayHeight(context) * 0.1,
         width: displayWidth(context),
@@ -36,7 +36,7 @@ class _SearchBarState extends State<SearchBar> {
               children: [
                 IconButton(onPressed: (){
 
-                  taskController.completeTask(index);
+                  taskController.completeTask(indexInOriginalList);
                 },
                     icon: Icon(task.isComplete? Icons.check_box : Icons.check_box_outline_blank)
                 ),
@@ -48,7 +48,7 @@ class _SearchBarState extends State<SearchBar> {
                       style: TextStyle(
                           fontSize: 17,
                           decoration:
-                          (taskController.taskList[index].isComplete)
+                          (taskController.taskList[indexInOriginalList].isComplete)
                               ? TextDecoration.lineThrough
                               : TextDecoration.none),
                       maxLines: 1,
@@ -79,6 +79,7 @@ class _SearchBarState extends State<SearchBar> {
                   displayList = controller.taskList
                       .where((element) => element.taskName.toLowerCase().startsWith(query.toLowerCase()))
                       .toList();
+                  print(displayList.length);
                 }
                 setState(() {});
               },
@@ -154,7 +155,9 @@ class _SearchBarState extends State<SearchBar> {
                                               child: Text('Cancel')),
                                           TextButton(
                                               onPressed: () {
-                                                taskController.removeTask(index);
+                                                taskController.removeTask(displayList[index].id);
+                                                displayList.removeAt(index);
+                                                setState((){});
                                                 Navigator.pop(context);
                                               },
                                               child: Text('Delete'))
@@ -181,7 +184,7 @@ class _SearchBarState extends State<SearchBar> {
                     ),
 
 
-                      //child: cardBox(displayList[index])
+
                   );
 
 

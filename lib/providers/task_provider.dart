@@ -8,7 +8,8 @@ class TasksProvider extends ChangeNotifier{
     taskList.add(task);
     notifyListeners();
   }
-  void removeTask(int index){
+  void removeTask(String id){
+    int index = taskList.indexWhere((element) => element.id==id);
     taskList.removeAt(index);
     notifyListeners();
   }
@@ -22,5 +23,11 @@ class TasksProvider extends ChangeNotifier{
   void completeTask(int index){
      taskList[index].completeTask();
      notifyListeners();
+  }
+
+  void changeDate(String id,DateTime newDate){
+    int index = taskList.indexWhere((element) => element.id ==id);
+    taskList[index].changeDate(newDate);
+    notifyListeners();
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TasksModel{
   final String id;
   final String taskName;
-  final DateTime dueDate;
+  DateTime dueDate;
   bool isFavourite = false;
   bool isComplete = false;
 
@@ -17,5 +17,9 @@ class TasksModel{
 
   void completeTask(){
     isComplete=!isComplete;
+  }
+
+  void changeDate(DateTime updatedDate){
+    dueDate = updatedDate;
   }
 }
