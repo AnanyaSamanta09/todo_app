@@ -65,40 +65,99 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       setState((){
                         isDisplayingCategory=!isDisplayingCategory;
                       });
-                    }, icon: Icon(Icons.upload))
+                    }, icon: Icon(Icons.arrow_drop_down))
 
 
 
-                    // DropdownButtonFormField <String>(
-                    //
-                    //   value: categories,
-                    //   style: TextStyle(color: Colors.black),
-                    //   decoration: InputDecoration(
-                    //       isCollapsed: true,
-                    //       enabledBorder: InputBorder.none,
-                    //       focusedBorder: InputBorder.none
-                    //   ),
-                    //   icon: Icon(Icons.arrow_drop_down, color: Colors.black),
-                    //   onChanged: (newValue) {
-                    //
-                    //        categories = newValue!;
-                    //   },
-                    //   items: <String>[
-                    //     'All', 'Work', 'Personal', 'Wishlist', 'Birthday'
-                    //   ].map<DropdownMenuItem<String>>((String value) {
-                    //     return DropdownMenuItem<String>(
-                    //         value: value,
-                    //         child: Text(value),
-                    //       enabled: true,
-                    //     );
-                    //   }).toList(),
-                    // )
 
                   ],
                 ),
 
                 isDisplayingCategory?
-                    Container(height: 30,color: Colors.red.shade100,)
+                    Container(child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.note_add),
+
+                                SizedBox(
+                                  width: displayWidth(context)*0.05,
+                                ),
+
+                                Text('All')
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: displayHeight(context)*0.013,
+                            ),
+
+                            Row(
+                              children: [
+                                Icon(Icons.note_add),
+
+                                SizedBox(
+                                  width: displayWidth(context)*0.05,
+                                ),
+
+                                Text('Work')
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: displayHeight(context)*0.013,
+                            ),
+
+                            Row(
+                              children: [
+                                Icon(Icons.note_add),
+
+                                SizedBox(
+                                  width: displayWidth(context)*0.05,
+                                ),
+
+                                Text('Personal')
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: displayHeight(context)*0.013,
+                            ),
+
+                            Row(
+                              children: [
+                                Icon(Icons.note_add),
+
+                                SizedBox(
+                                  width: displayWidth(context)*0.05,
+                                ),
+
+                                Text('Wishlist')
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: displayHeight(context)*0.013,
+                            ),
+
+                            Row(
+                              children: [
+                                Icon(Icons.note_add),
+
+                                SizedBox(
+                                  width: displayWidth(context)*0.05,
+                                ),
+
+                                Text('Birthday')
+                              ],
+                            ),
+
+                          ],
+                        ),
+                    ),
+                    )
                     : SizedBox(),
 
                 SizedBox(
